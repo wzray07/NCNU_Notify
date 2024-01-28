@@ -5,7 +5,7 @@ import requests
 
 CLIENT_ID = "Dj1tRApv8HZfBjUWj0dNOe"
 SECRET = "EzLJPlSm7wRYzdxHO4FNS8VbkEXANEFCcN3DE58BWgE"
-URI = "http://localhost:8080/callback/"
+URI = "http://localhost:8080/callback"
 lotify = Client(client_id=CLIENT_ID, client_secret=SECRET, redirect_uri=URI)
 
 app = Flask(__name__, template_folder = 'templates')
