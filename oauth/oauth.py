@@ -11,12 +11,12 @@ lotify = Client(client_id=CLIENT_ID, client_secret=SECRET, redirect_uri=URI)
 app = Flask(__name__, template_folder = 'templates')
 
 def store_info(token):
-    with open('token_list', 'a') as token_file:
+    with open('new_token_list', 'a') as token_file:
         token_file.write( token + '\n')
 
 def welcome_notification(token):
     # check before send
-    with open('token_list', 'r') as token_file:
+    with open('new_token_list', 'r') as token_file:
         all_token = token_file.read()
         all_token = all_token.split('\n')
     if token not in all_token:

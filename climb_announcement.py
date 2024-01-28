@@ -8,11 +8,10 @@ def send_notification_line(unit_from, name, link):
     error_token = []
     new_token = []
     url = 'https://notify-api.line.me/api/notify'
-    with open('oauth/token_list', 'r') as token_file:
+    with open('all_token', 'r') as token_file:
         all_token = token_file.read()
         all_token = all_token.split('\n')
     for i in range(len(all_token)):
-
         headers = {
             'Authorization': 'Bearer ' + all_token[i]    
         }
@@ -22,13 +21,9 @@ def send_notification_line(unit_from, name, link):
         response = requests.post(url, headers=headers, data=data)
         if(response == '401'):
             error_token.append(all_token[i])
-        else:
-            new_token.append(all_token[i])
+        
     
     if(len(error_token != 0)):
-        with open('new_token', 'w') as token_file:
-            for i in new_token:
-                token_file.write( i + '\n')
         with open('error_token', 'w') as token_file:
             for i in error_token:
                 token_file.write( i + '\n')
