@@ -1,0 +1,5 @@
+Flask==3.0.0
+uuid==1.30
+lotify==2.3.4
+requests==2.31.0
+uWSGI==2.0.23

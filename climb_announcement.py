@@ -6,7 +6,6 @@ from bs4 import BeautifulSoup
 
 def send_notification_line(unit_from, name, link):
     error_token = []
-    new_token = []
     url = 'https://notify-api.line.me/api/notify'
     with open('all_token', 'r') as token_file:
         all_token = token_file.read()
@@ -23,7 +22,7 @@ def send_notification_line(unit_from, name, link):
             error_token.append(all_token[i])
         
     
-    if(len(error_token != 0)):
+    if(len(error_token) != 0):
         with open('error_token', 'w') as token_file:
             for i in error_token:
                 token_file.write( i + '\n')
