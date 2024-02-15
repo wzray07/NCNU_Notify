@@ -1,1 +1,219 @@
-test
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Line Notify 連動完成</title>
+    <!-- 引入 Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- 自定義 CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #879DBB;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            position: relative;
+        }
+        .header {
+            text-align:center;
+            padding:35px 20px 25px 20px;
+            background-color:#232D43;
+        }
+        .header h1 {
+            font-size:46px;
+            font-weight:bold;
+            text-shadow: 0px 0px 2px #9B9987;
+        }
+        .container {
+            padding-top:20px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 0px;
+        }
+        .container h1 {
+            font-size:48px;
+            font-weight:bold;
+            text-shadow: 2px 2px 2px #333;
+        }
+        .btn-confirm {
+            background-color: #06B24D;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin:20px 20px 0px 20px;
+        }
+        .btn-confirm:hover {
+            background-color: #069D45;
+        }
+        .note {
+            margin-top: 30px;
+            background-color:#879DBB;
+            padding: 20px 20px 20px 20px;
+            border-radius: 5px;
+            /*box-shadow: 0 0 10px rgba(0,0,0,0.1);*/
+        }
+        .note p {
+            text-align: left;
+            font-size:16px;
+            line-height:30px;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0; /* 修正底部位置 */
+            width: 100%;
+            background-color: #DBDBDB;
+            color: #333;
+            text-align: center;
+            transition: bottom 0.3s ease; /* 添加過渡效果 */
+            margin-top: 20px;
+            padding:20px 20px 10px 20px;
+        }
+        footer a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        footer a:hover {
+            color: #00B900;
+        }
+        footer p {
+            margin-bottom: 5px; /* 修正底部段落的 margin */
+        }
+
+        .message-container {
+            margin: 20px;
+        }
+        
+        .message1 {
+            position: relative;
+            display: block;
+            max-width: 60%;
+            padding: 15px 20px 1px 20px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            color:#000;
+            text-align: left; /* 讓文字靠左對齊 */
+        }
+        .message2 {
+            position: relative;
+            display: block;
+            max-width: 40%;
+            padding: 15px 20px 1px 20px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            color:#000;
+            text-align: left; /* 讓文字靠左對齊 */
+        }
+        
+        .incoming {
+            background-color: #ddd;
+            text-align:left;
+            align:left;
+        }
+        
+        /* 對話泡泡尖角 */
+        .incoming:before{
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
+        }
+        
+        .incoming:before {
+            top: 0px;
+            left: -18px;
+            border-width: 20px 35px 10px 0;
+            border-color: transparent #ddd transparent transparent;
+        }
+        
+        @media screen and (max-width:576px){
+            .message1 {
+                max-width:90%;
+                padding:10px 10px 5px 15px;
+            }
+            .message2 {
+                max-width:75%;
+                padding:10px 10px 5px 15px;
+            }
+            .incoming:before {
+                top: 3px;
+                border-width: 10px 30px 10px 0;
+            }
+            .header {
+                text-align:left;
+                padding:50px 0px 10px 20px;
+            }
+            .header h1 {
+                font-size:26px;
+                font-weight:500;
+                text-shadow: 0px 0px 2px #9B9987;
+            }
+            .footer p {
+                font-size:14px;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="header">
+
+    <h1>&nbsp;Line Notify 連動完成</h1>
+    </div>
+    <div class="container">
+        <div class="note">
+            <div class="message1 incoming">
+                <p style=>連動完成，請至 Line 查看是否有連動成功訊息，如有任何問題請聯繫服務開發者。</p>
+            </div>
+            <div class="message2 incoming">
+                <p>請注意：連動完成後需等待一天才會正式生效。</p>
+            </div>
+        </div>
+        <!-- 問題與意見回饋的按鈕 -->
+        <button onclick="window.location.href = 'https://github.com/wzray07/NCNU_Notify/issues';" class="btn btn-confirm">問題與意見回饋</button>
+        <!-- 確認 Line Notify 連動狀態的按鈕 -->
+        <button onclick="window.location.href = 'https://notify-bot.line.me/my/';" class="btn btn-confirm">點擊確認 Line Notify 連動狀態</button>
+    </div>
+    <!-- Footer -->
+    <footer>
+        <div class="footer">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="btn">
+                        <a href="mailto:s109213017@mail1.ncnu.edu.tw" class="btn btn-outline-secondary"><i class="fas fa-envelope"></i></a>
+                        <a href="https://github.com/wzray07/NCNU_Notify" class="btn btn-outline-secondary"><i class="fab fa-github"></i></a>
+                        <!-- Add more buttons as needed -->
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <p><i class="fas fa-code"></i>&nbsp; 服務開發者：吳梓睿 wzray07 &nbsp;&nbsp; ｜ &nbsp;<i class="fas fa-user"></i>&nbsp; &nbsp;服務聯絡人：吳梓睿 wzray07</p>
+                    <p>Copyright © 2024 Your Company. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+        <p class="text-center">Copyright © 2024 Your Company. All rights reserved.</p>
+    </footer>
+    
+    
+    
+    
+    <!-- 引入 Bootstrap JS 和 jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

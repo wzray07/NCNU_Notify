@@ -1,10 +1,328 @@
-<html>
+<!DOCTYPE html>
+<html lang="zh-TW">
 <head>
-    <title></title>
-	<meta charset="utf-8" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NCNU 暨大最新通知 2.0 授權頁面</title>
+    <!-- 引入 Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- 自定義 CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            position: relative;
+        }
+        .container {
+            padding:60px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        .container h1 {
+            font-size:48px;
+            font-weight:bold;
+        }
+        .btn-confirm {
+            background-color: #00B900;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin:40px 40px 0px 40px;
+        }
+        .btn-confirm:hover {
+            background-color: #00A000;
+        }
+        .btn-connect {
+            background-color: #00B900;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin:40px 40px 40px 0px;
+        }
+        .btn-connect:hover {
+            background-color: #00A000;
+        }
+        .note {
+            margin-top: 30px;
+            background-color: rgba(0, 0, 0, 0.65);
+            padding: 40px 20px 20px 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .note h2 {
+            margin-bottom: 10px;
+            font-size:28px;
+        }
+        .note ul, .note ol {
+            text-align: left;
+            margin-left: 20px;
+            font-size:18px;
+            line-height:32px;
+        }
+        .note p {
+            text-align: center;
+            margin-left: 20px;
+            font-size:16px;
+            line-height:30px;
+        }
+        .phone-frame {
+            position: absolute;
+            top: 300px;
+            left: 50%;
+            transform: translateX(-50%) scale(0.48);
+            transition: transform 0.1s ease;
+            z-index: -1;
+        }
+        .background-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            z-index: -1;
+            object-fit: cover;
+            filter: brightness(50%);
+        }
+        .spacer {
+            height:0px;
+        }
+        .usage-info {
+            position:relative;
+            background-color: rgba(0, 0, 0, 0.1); /* 透明度為0.8的黑色背景 */
+            color: #fff;
+            padding: 30px;
+            padding-top:200px;
+            left:10%;
+            border-radius: 5px;
+            text-align: left;
+            z-index: 999;
+            opacity: 0; /* 預設隱藏 */
+            transition: opacity 1s ease; /* 添加淡入淡出過渡效果 */
+        }
+        
+        .usage-info.show {
+            opacity: 1; /* 顯示時淡入 */
+        }        
+        
+        .usage-info h2 {
+            margin-bottom: 10px;
+        }
+        
+        .usage-info ol ,.usage-info li{
+            padding-left: 20px;
+            line-height:42px;
+            font-size:22px;
+        }
+
+        footer {
+            position: relative;
+            bottom: 0; /* 修正底部位置 */
+            padding-top:40px;
+            padding-bottom:10px;
+            width: 100%;
+            background-color: #222;
+            color: #fff;
+            text-align: center;
+            transition: bottom 0.3s ease; /* 添加過渡效果 */
+            margin-top: 250px;
+            padding:20px 20px 10px 20px;
+
+        }
+        footer a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        footer a:hover {
+            color: #00B900;
+        }
+        footer p {
+            margin-bottom: 2px; /* 修正底部段落的 margin */
+        }
+        @media screen and (max-width:576px){
+            .container {
+                padding:20px;
+            }
+            .phone-frame {
+                top:750px;
+            }
+
+            .usage-info {
+                margin-top: 680px; /* 與手機匡之間的間距 */
+                opacity: 1;
+            }
+            .usage-info h2{
+                font-size:24px;
+            }
+            .usage-info li{
+                font-size:18px;
+                line-height:32px;
+            }
+            .background-video {
+                height:42%;
+            }
+            .footer {
+                margin-top:0px;
+            }
+        }
+        @media screen and (min-width: 576px) and (max-width: 992px){ 
+            .phone-frame {
+                left:27%;
+            }
+            .usage-info {
+                display: block; /* 在大尺寸下顯示為行內元素 */
+                margin-top: 300px; /* 與手機匡之間的間距 */
+                margin-left: 300px; /* 與手機匡之間的間距 */
+            }
+            .usage-info li{
+                font-size:20px;
+                line-height:38px;
+            }
+            .background-video {
+                height:50%;
+            }
+            .spacer {
+                height: 200px;
+            }
+        }
+        @media (min-width: 992px) {
+            .phone-frame {
+                left:50%;
+            }
+            .usage-info {
+                display: block; /* 在大尺寸下顯示為行內元素 */
+                margin-top: 250px; /* 與手機匡之間的間距 */
+                margin-left: 400px; /* 與手機匡之間的間距 */
+            }
+            .background-video {
+                height:45%;
+            }
+            .spacer {
+                height: 0px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <button onclick="window.location.href = '{{auth_url}}';">點選這裡連結到LineNotify</button>
+    <!-- 背景視頻 -->
+    <video autoplay muted loop class="background-video">
+        <source src="{{ url_for('static', filename='video/bg.mp4') }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    
+    <div class="container">
+        <h1>NCNU 暨大最新通知 2.0 授權頁面</h1>
+        <div class="note">
+            <p>Lorem ipsum是指一篇用於網頁設計、排印、版面和印刷的偽拉丁文章，其用來取代英語去強調設計元素而不是內容。它也被稱為佔位符文（或填充文）。它是一個很方便的模板工具。它用於幫助編排文章或簡報的視覺元素，如排印，字體，或佈局。Lorem ipsum 大多是由古典作家和哲學家西塞羅創作的拉丁文的一部分。它的單字和字母由於添加或去移除而被改變了，所以故意使其內容荒謬。
+            </p><hr/><hr/>
+            <h2>歡迎使用 Line Notify！請注意以下事項：</h2>
+            <ul>
+                <li>請勿重複申請連動，以免收到重複的訊息。</li>
+                <li>可點擊下方按鈕確認或刪除連動。</li>
+                <li>夜間 00:00~01:00 系統維護時間，請盡量避免此時段進行連動認證。</li>
+            </ul>
+        </div>
+        <!-- 確認 Line Notify 連動狀態的按鈕 -->
+        <button onclick="window.location.href = 'https://notify-bot.line.me/my/';" class="btn btn-confirm">點擊確認 Line Notify 連動狀態</button>
+        
+        <!-- 手機框 -->
+        <div class="phone-frame">
+            <img src="{{ url_for('static', filename='img/chat.png') }}" alt="Line Notify 聊天截圖">
+        </div>
+        <div class="usage-info">
+            <h2>使用說明：</h2>
+            <ol>
+                <li>點擊下方按鈕進行連動</li>
+                <li>點擊「透過1對1聊天接收 Line Notify 通知」</li>
+                <li>點擊「同意並連動」</li>
+                <li>確認 Line 是否成功收到訊息</li>
+            </ol>
+            <button onclick="window.location.href = '{{auth_url}}';" class="btn btn-connect">點選這裡連結到LineNotify</button>
+
+        </div>
+    </div>
+    <div class="spacer"></div>
+    </div>
+    <!-- Footer -->
+    <footer>
+        <div class="footer">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="btn">
+                        <a href="mailto:s109213017@mail1.ncnu.edu.tw" class="btn btn-outline-light"><i class="fas fa-envelope"></i></a>
+                        <a href="https://github.com/wzray07/NCNU_Notify" class="btn btn-outline-light"><i class="fab fa-github"></i></a>
+                        <!-- Add more buttons as needed -->
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <p><i class="fas fa-code"></i>&nbsp; 服務開發者：吳梓睿 wzray07 &nbsp;&nbsp; ｜ &nbsp;<i class="fas fa-user"></i>&nbsp; &nbsp;服務聯絡人：吳梓睿 wzray07</p>
+                    <p>Copyright © 2024 Your Company. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    
+    <!-- 引入 Bootstrap JS 和 jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // 監聽滾動事件，當畫面往上滾動時，手機框放大
+        window.addEventListener('scroll', function() {
+            if (!window.matchMedia('(max-width: 576px)').matches) {
+            var scrollY = window.scrollY;
+            var phoneFrame = document.querySelector('.phone-frame');
+            var scale = 0.48 + scrollY * 0.00015; // 根據滾動距離計算縮放比例
+            var pos = 300 + scrollY * 0.25; // 照片位置
+            var pos_left = 50 - scrollY * 0.05;
+            var videoFrame = document.querySelector('.background-video');
+            var video = 50 - scrollY * 0.006;
+            scale = Math.min(scale, 0.55); // 最大放大為原始大小的兩倍
+            pos = Math.min(pos, 900);
+            pos_left = Math.max(pos_left, 25);
+
+            phoneFrame.style.transform = 'translateX(-50%) scale(' + scale + ')';
+            phoneFrame.style.top = pos + 'px';
+            phoneFrame.style.left = pos_left + '%';
+            videoFrame.style.height = video + '%';
+
+            // 判斷手機框完全顯示時顯示使用說明
+            var usageInfo = document.querySelector('.usage-info');
+            if (scale > 0.51) {
+                usageInfo.classList.add('show');
+            } else {
+                usageInfo.classList.remove('show');
+            }
+
+
+            // 判斷滾動到底部時顯示 footer
+            /*var footer = document.querySelector('footer');
+            var windowHeight = window.innerHeight;
+            var bodyHeight = document.body.offsetHeight;
+            var scrollPosition = window.scrollY || window.pageYOffset;
+            if (windowHeight + scrollPosition >= bodyHeight) {
+                footer.style.bottom = '-500px';
+            } else {
+                footer.style.bottom = '-500px';
+            }*/
+        }
+        });
+    </script>
 </body>
 </html>
