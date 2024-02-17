@@ -105,14 +105,13 @@
             position:relative;
             background-color: rgba(0, 0, 0, 0.1); /* 透明度為0.8的黑色背景 */
             color: #fff;
-            padding: 30px;
             padding-top:200px;
             left:10%;
             border-radius: 5px;
             text-align: left;
             z-index: 999;
             opacity: 0; /* 預設隱藏 */
-            transition: opacity 1s ease; /* 添加淡入淡出過渡效果 */
+            transition: opacity 0.6s ease; /* 添加淡入淡出過渡效果 */
         }
         
         .usage-info.show {
@@ -155,16 +154,24 @@
             margin-bottom: 2px; /* 修正底部段落的 margin */
         }
         @media screen and (max-width:576px){
+            .container h1 {
+                font-size:36px;
+                font-weight:bold;
+                line-height:50px;
+                margin-bottom:20px;
+            }
             .container {
                 padding:20px;
+                padding-top:50px;
             }
             .phone-frame {
-                top:750px;
+                top:450px;
             }
 
             .usage-info {
-                margin-top: 680px; /* 與手機匡之間的間距 */
+                margin-top: 600px; /* 與手機匡之間的間距 */
                 opacity: 1;
+                margin-right:40px;
             }
             .usage-info h2{
                 font-size:24px;
@@ -174,7 +181,7 @@
                 line-height:32px;
             }
             .background-video {
-                height:42%;
+                height:38%;
             }
             .footer {
                 margin-top:0px;
@@ -194,10 +201,7 @@
                 line-height:38px;
             }
             .background-video {
-                height:50%;
-            }
-            .spacer {
-                height: 200px;
+                height:35%;
             }
         }
         @media (min-width: 992px) {
@@ -227,22 +231,22 @@
     
     <div class="container">
         <h1>NCNU 暨大最新通知 2.0 授權頁面</h1>
+        <p>即時接收暨大公告的最新消息，以免錯過重要學校所公告的重要訊息。
+        </p>
         <div class="note">
-            <p>Lorem ipsum是指一篇用於網頁設計、排印、版面和印刷的偽拉丁文章，其用來取代英語去強調設計元素而不是內容。它也被稱為佔位符文（或填充文）。它是一個很方便的模板工具。它用於幫助編排文章或簡報的視覺元素，如排印，字體，或佈局。Lorem ipsum 大多是由古典作家和哲學家西塞羅創作的拉丁文的一部分。它的單字和字母由於添加或去移除而被改變了，所以故意使其內容荒謬。
-            </p><hr/><hr/>
-            <h2>歡迎使用 Line Notify！請注意以下事項：</h2>
+            <h2>歡迎使用 Line Notify！請注意以下事項：</h2><hr/>
             <ul>
                 <li>請勿重複申請連動，以免收到重複的訊息。</li>
                 <li>可點擊下方按鈕確認或刪除連動。</li>
                 <li>夜間 00:00~01:00 系統維護時間，請盡量避免此時段進行連動認證。</li>
-            </ul>
+            </ul><hr/><hr/>
+            <button onclick="window.location.href = 'https://notify-bot.line.me/my/';" class="btn btn-outline-success">點擊確認 Line Notify 連動狀態</button>
+<hr/>
         </div>
-        <!-- 確認 Line Notify 連動狀態的按鈕 -->
-        <button onclick="window.location.href = 'https://notify-bot.line.me/my/';" class="btn btn-confirm">點擊確認 Line Notify 連動狀態</button>
-        
+
         <!-- 手機框 -->
         <div class="phone-frame">
-            <img src="{{ url_for('static', filename='img/chat.png') }}" alt="Line Notify 聊天截圖">
+            <img src="{{ url_for('static', filename='img/step.png') }}" alt="Line Notify 聊天截圖">
         </div>
         <div class="usage-info">
             <h2>使用說明：</h2>
