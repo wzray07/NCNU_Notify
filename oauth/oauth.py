@@ -3,20 +3,20 @@ from flask import Flask, render_template, request
 from lotify.client import Client
 import requests
 
-CLIENT_ID = "Dj1tRApv8HZfBjUWj0dNOe"
-SECRET = "EzLJPlSm7wRYzdxHO4FNS8VbkEXANEFCcN3DE58BWgE"
-URI = "http://localhost:8080/callback"
+CLIENT_ID = ""
+SECRET = ""
+URI = "http://localhost/callback"
 lotify = Client(client_id=CLIENT_ID, client_secret=SECRET, redirect_uri=URI)
 
 app = Flask(__name__, template_folder = 'templates')
 
 def store_info(token):
-    with open('new_token_list', 'a') as token_file:
+    with open('/home/new_token_list', 'a') as token_file:
         token_file.write( token + '\n')
 
 def welcome_notification(token):
     # check before send
-    with open('new_token_list', 'r') as token_file:
+    with open('/home/new_token_list', 'r') as token_file:
         all_token = token_file.read()
         all_token = all_token.split('\n')
     if token not in all_token:
@@ -52,4 +52,4 @@ def complete():
     return render_template("callback.html")
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080, debug=True)
+    app.run(host="0.0.0.0", port=8080)
