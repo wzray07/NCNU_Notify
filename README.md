@@ -18,7 +18,7 @@
 - `new_token_list` 綁定完成的 token
 ### 使用測試
 > 僅提供測試使用，測試前需先申請一組服務 [傳送門](https://notify-bot.line.me/my/services/)</p>
-> 如需進行用戶授權綁定，[點擊這裡]()
+> 如需進行用戶授權綁定，[點擊這裡](https://notifyoauth.wzray07.studio/)
 - 完成申請後，將會獲得 `client_id` 與 `client sercret`
 - 將 `client_id` 與 `secret` 更新到 `oauth.py`（第 6、7 行）
 - in Terminal => `cd NCNU_Notify` `docker-compose up`
